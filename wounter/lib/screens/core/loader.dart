@@ -27,13 +27,22 @@ class _LoaderScreenState extends State<LoaderScreen> {
   @override
   void initState() {
     super.initState();
-    loadApp();
+    Future.delayed(const Duration(milliseconds: 2500), () {
+      loadApp();
+    });
   }
 
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Center(
-        child: CircularProgressIndicator(),
+        child: Container(
+          width: 100,
+          height: 100,
+          child: const CircularProgressIndicator(
+            strokeWidth: 2,
+            color: Colors.black,
+          ),
+        ),
       ),
     );
   }
