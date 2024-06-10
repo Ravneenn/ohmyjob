@@ -1,2 +1,2 @@
 # oh my job
-Wounter - Daily Wage Counter
+Oh My job - Find your job
