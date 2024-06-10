@@ -1,15 +1,7 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gap/gap.dart';
-import 'package:go_router/go_router.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../bloc/client/client_cubit.dart';
-import '../../core/localizations.dart';
 import '../../core/storage.dart';
 
 class SettingsScreen extends StatefulWidget {

@@ -27,7 +27,7 @@ class _LoaderScreenState extends State<LoaderScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(milliseconds: 2500), () {
+    Future.delayed(const Duration(milliseconds: 1000), () {
       loadApp();
     });
   }
