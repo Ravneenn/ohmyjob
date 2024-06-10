@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:wounter/service/api.dart';
-
 import '../models/Job.dart';
 import '../widgets/bnb.dart';
+import '../widgets/tranlator.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -23,7 +22,7 @@ class HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Job Listings'),
+        title: Text(tranlator(context, "adverts")),
       ),
       body: ListView.builder(
         itemCount: jobs.length,

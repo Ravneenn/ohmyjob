@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../bloc/client/client_cubit.dart';
 import '../../core/storage.dart';
+import '../../widgets/tranlator.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -30,7 +31,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: const Text("Settings"),
+          title: Text(tranlator(context, "settings")),
         ),
         body: Center(
           child: Column(
@@ -42,8 +43,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text(
-                        "Karanlık Mod",
+                      Text(
+                        tranlator(context, "darkMode"),
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 25),
                       ),
@@ -71,8 +72,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text(
-                        "Dil",
+                      Text(
+                        tranlator(context, "language"),
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 25),
                       ),

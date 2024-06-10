@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,9 +6,10 @@ import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:wounter/widgets/bnb.dart';
 import '../../bloc/client/client_cubit.dart';
 import '../../core/storage.dart';
+import '../../widgets/bnb.dart';
+import '../../widgets/tranlator.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -77,7 +77,7 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Profile'),
+          title: Text(tranlator(context, "profile")),
           actions: [
             IconButton(
               icon: const Icon(Icons.edit),
@@ -86,7 +86,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     context: context,
                     builder: (context) => AlertDialog(
                           scrollable: true,
-                          title: const Text("Edit Profie"),
+                          title: Text(tranlator(context, "editProfile")),
                           content: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
@@ -115,11 +115,9 @@ class _ProfilePageState extends State<ProfilePage> {
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(15),
                                     ),
-                                    child: const Padding(
+                                    child: Padding(
                                       padding: EdgeInsets.all(8.0),
-                                      child: Text(
-                                        "Cancel",
-                                      ),
+                                      child: Text(tranlator(context, "cancel")),
                                     ),
                                   ),
                                 ),
@@ -142,10 +140,10 @@ class _ProfilePageState extends State<ProfilePage> {
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(15),
                                     ),
-                                    child: const Padding(
+                                    child: Padding(
                                       padding: EdgeInsets.all(8.0),
                                       child: Text(
-                                        "Confirm",
+                                        tranlator(context, "confirm"),
                                       ),
                                     ),
                                   ),
@@ -176,11 +174,11 @@ class _ProfilePageState extends State<ProfilePage> {
                     onPressed: () {
                       profilePhotoUpdate();
                     },
-                    child: Text("Edit Profile Photo")),
+                    child: Text(tranlator(context, "editPhoto"))),
               ),
               const SizedBox(height: 16),
-              const Text(
-                'Username:',
+              Text(
+                "${tranlator(context, "username")}: ",
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               Text(
@@ -190,8 +188,8 @@ class _ProfilePageState extends State<ProfilePage> {
               const SizedBox(height: 8),
               const Divider(height: 1, color: Colors.grey), // Ayırıcı ekleniyor
               const SizedBox(height: 8),
-              const Text(
-                'Email:',
+              Text(
+                "${tranlator(context, "email")}: ",
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               Text(
@@ -201,8 +199,8 @@ class _ProfilePageState extends State<ProfilePage> {
               const SizedBox(height: 8),
               const Divider(height: 1, color: Colors.grey), // Ayırıcı ekleniyor
               const SizedBox(height: 8),
-              const Text(
-                'Bio:',
+              Text(
+                "${tranlator(context, "bio")}: ",
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               Text(

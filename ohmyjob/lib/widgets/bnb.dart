@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import 'tranlator.dart';
+
 // ignore: must_be_immutable
 class bnb extends StatelessWidget {
   bnb({
@@ -23,18 +25,18 @@ class bnb extends StatelessWidget {
           GoRouter.of(context).push("/settings");
         }
       },
-      items: const [
+      items: [
         BottomNavigationBarItem(
           icon: Icon(Icons.home),
-          label: 'Home',
+          label: tranlator(context, "home"),
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.account_circle),
-          label: 'Profile',
+          label: tranlator(context, "profile"),
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.settings),
-          label: 'Settings',
+          label: tranlator(context, "settings"),
         ),
       ],
     );

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 import '../../models/Job.dart';
+import '../../widgets/tranlator.dart';
 
 class AdvertScreen extends StatefulWidget {
   final Job job;
@@ -27,7 +28,8 @@ class AdvertScreenState extends State<AdvertScreen> {
             padding: const EdgeInsets.all(8.0),
             child: Row(
               children: [
-                Text("İlan Sahibi: ", style: TextStyle(fontSize: 22)),
+                Text("${tranlator(context, "advertBy")}: ",
+                    style: TextStyle(fontSize: 22)),
                 Text(widget.job.company,
                     style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold))
               ],
@@ -36,8 +38,8 @@ class AdvertScreenState extends State<AdvertScreen> {
           Divider(),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: const Text(
-              "İlan Açıklaması:",
+            child: Text(
+              "${tranlator(context, "description")}",
               style: TextStyle(fontSize: 20),
             ),
           ),
@@ -62,7 +64,7 @@ class AdvertScreenState extends State<AdvertScreen> {
                 borderRadius: BorderRadius.circular(50)),
             child: Center(
                 child: Text(
-              "Başvur",
+              tranlator(context, "apply"),
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             )),
           )
