@@ -13,27 +13,43 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final SharedPreferences storage = await SharedPreferences.getInstance();
   Storage strg = Storage();
-  bool isFirst = await strg.isFirstLaunch();
+  // ignore: unused_local_variable
+  var isFirst = strg.isFirstLaunch();
   runApp(MainApp(
     storage: storage,
-    isFirst: isFirst,
   ));
 }
 
 class MainApp extends StatefulWidget {
-  const MainApp({super.key, required this.storage, required this.isFirst});
+  const MainApp({super.key, required this.storage});
   final SharedPreferences storage;
-  final bool isFirst;
 
   @override
   State<MainApp> createState() => _MainAppState();
 }
 
 class _MainAppState extends State<MainApp> {
+  bool? isFirst;
+
+  getIsFirst() async {
+    Storage srtg = Storage();
+    bool awaitresult = await srtg.isFirstLaunch();
+    setState(() {
+      isFirst = awaitresult;
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getIsFirst();
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ClientCubit(widget.isFirst == true
+      create: (context) => ClientCubit(isFirst == true
           ? ClientState(
               language: getDeviceLanguage(),
               darkMode: ThemeMode.system == ThemeMode.dark)
