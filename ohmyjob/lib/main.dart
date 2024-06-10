@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -12,9 +14,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final SharedPreferences storage = await SharedPreferences.getInstance();
-  Storage strg = Storage();
-  // ignore: unused_local_variable
-  var isFirst = strg.isFirstLaunch();
+
   runApp(MainApp(
     storage: storage,
   ));
@@ -49,16 +49,23 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ClientCubit(isFirst == true
-          ? ClientState(
-              language: getDeviceLanguage(),
-              darkMode: ThemeMode.system == ThemeMode.dark)
-          : ClientState(
-              language: widget.storage.getString("language")!,
-              darkMode: widget.storage.getBool("darkMode")!)),
+      create: (context) {
+        switch (isFirst) {
+          case true:
+            return ClientCubit(ClientState(
+                language: getDeviceLanguage(),
+                darkMode: ThemeMode.system == ThemeMode.dark));
+          case false:
+            return ClientCubit(ClientState(
+                language: widget.storage.getString("language")!,
+                darkMode: widget.storage.getBool("darkMode")!));
+          case null:
+            return ClientCubit(ClientState(language: "en", darkMode: false));
+        }
+      },
       child: BlocBuilder<ClientCubit, ClientState>(builder: (context, state) {
         return MaterialApp.router(
-          title: 'Wounter',
+          title: 'Oh My Job',
           debugShowCheckedModeBanner: false,
           routerConfig: routes,
           themeMode: state.darkMode ? ThemeMode.dark : ThemeMode.light,
